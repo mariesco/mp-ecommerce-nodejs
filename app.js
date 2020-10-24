@@ -55,6 +55,7 @@ let preference = {
 };
 
 app.get("/", function (req, res) {
+    console.log('este es el console.log del home')
     res.render("home");
 });
 
@@ -75,7 +76,7 @@ app.post("/mpago", function (req, res) {
     mercadopago.preferences
         .create(preference)
         .then(function (response) {
-            res.redirect(response.response.init_point);
+            res.redirect(response.init_point);
         })
         .catch(function (error) {
             console.log(error);
