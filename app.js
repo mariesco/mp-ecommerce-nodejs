@@ -1,10 +1,13 @@
 var express = require("express");
 var exphbs = require("express-handlebars");
+const bodyParser = require('body-parser');
 const mercadopago = require("mercadopago");
 
 var app = express();
 
 const PORT = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
 
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
@@ -93,13 +96,11 @@ app.get("/pending", function (req, res) {
 });
 
 app.get("/success", function (req, res) {
-    console.log("la query trae: ", req.query);
     res.render("success", req.query);
 });
 
 app.post("notifications", function (req, res) {
-    console.log("la notif webook es:", req.query);
-    console.log("o viene por body: ", req);
+    console.log("o viene por body: ", req.body);
     res.status(200).send("OK");
 });
 
