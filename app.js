@@ -101,7 +101,7 @@ app.get("/success", function (req, res) {
 
 app.post("notifications", function (req, res) {
     console.log("o viene por body: ", req.body);
-    res.status(200).send("OK");
+    res.sendStatus(200);
 });
 
 app.use(express.static("assets"));
