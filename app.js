@@ -101,15 +101,13 @@ app.get("/success", function (req, res) {
 
 app.post("notifications", function (req, res) {
     mercadopago.ipn.manage(req).then(function (data) {
-        res.render('jsonOutput', {
-          result: data
-        });
+        console.log('la webhook: ', data)
+            res.sendStatus(200);
       }).catch(function (error) {
         res.render('500', {
           error: error
         });
       });
-    res.sendStatus(200);
 });
 
 app.use(express.static("assets"));
