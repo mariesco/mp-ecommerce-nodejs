@@ -100,7 +100,15 @@ app.get("/success", function (req, res) {
 });
 
 app.post("notifications", function (req, res) {
-    console.log("o viene por body: ", req.body);
+    mercadopago.ipn.manage(req).then(function (data) {
+        res.render('jsonOutput', {
+          result: data
+        });
+      }).catch(function (error) {
+        res.render('500', {
+          error: error
+        });
+      });
     res.sendStatus(200);
 });
 
